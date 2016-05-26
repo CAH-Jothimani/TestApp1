@@ -1,0 +1,18 @@
+package com.jhip.testapp.service
+
+import java.aspectj.lang.JoinPoint
+import java.aspectj.lang.annotation.AfterReturning
+import java.aspectj.lang.annotation.aspect
+import java.aspectj.lang.reflect.MethodSignature
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.service
+import org.springframework.transaction.annotation.Transactional
+
+@Aspect
+@Service
+class StageService{
+@AfterReurning(value="@annotation(com.jhip.testapp.service.Stage)",retruning="data")
+void interceptUpdate(JointPoint joinPoint,Object data){
+   def annotation = joinPoint.signature.method.getAnnotation(Stage.class)
+   int data = annotation.data
+}
