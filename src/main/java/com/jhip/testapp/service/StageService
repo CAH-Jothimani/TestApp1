@@ -14,5 +14,10 @@ class StageService{
 @AfterReurning(value="@annotation(com.jhip.testapp.service.Stage)",retruning="data")
 void interceptUpdate(JointPoint joinPoint,Object data){
    def annotation = joinPoint.signature.method.getAnnotation(Stage.class)
-   int data = annotation.data
+   int data = annotation.data()
+   updateTrans(data)
+}
+
+@Transactional
+void updateTrans(data){
 }
